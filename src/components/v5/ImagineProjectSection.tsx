@@ -15,6 +15,7 @@ import {
   FileCheck2,
 } from "lucide-react";
 import { MEDIA_REGISTRY } from "@/lib/constants";
+import { Reveal, RevealHeading } from "@/components/motion";
 
 interface ProjectTrack {
   id: string;
@@ -173,31 +174,33 @@ export const ImagineProjectSection: React.FC = () => {
       <div className="relative v5-container py-24 sm:py-32">
         {/* Section Header */}
         <div className="max-w-4xl">
-          <p className="v5-kicker flex items-center gap-2">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-amber-400" />
-            09 / IMAGINE YOUR PROJECT · COMMERCIAL BRIDGE
-          </p>
+          <Reveal level="l4">
+            <p className="v5-kicker flex items-center gap-2">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-amber-400" />
+              09 / IMAGINE YOUR PROJECT · COMMERCIAL BRIDGE
+            </p>
+          </Reveal>
 
-          <h2 className="v5-display mt-5 text-[clamp(2.5rem,5.5vw,5rem)] font-bold tracking-tight leading-[0.92]">
+          <RevealHeading level="l2" as="h2" className="v5-display mt-5 text-[clamp(2.5rem,5.5vw,5rem)] font-bold tracking-tight leading-[0.92]">
             YOUR SITE HAS ITS OWN COMPLEXITY.
-            <br />
-            <span className="text-white/40">
-              YOUR STRUCTURE HAS ITS OWN REQUIREMENTS.
-            </span>
-          </h2>
+          </RevealHeading>
 
-          <p className="mt-7 max-w-3xl text-base leading-7 text-white/65 md:text-lg">
-            Every industrial project begins with drawings, site conditions, and structural specifications.
-            Whether you require pipe racks, industrial shed framing, protective coatings, or facility ceiling work,
-            Kwality Interiors is available to review your drawings and discuss execution.
-          </p>
+          <Reveal level="l3">
+            <p className="mt-7 max-w-3xl text-base leading-7 text-white/65 md:text-lg">
+              Every industrial project begins with drawings, site conditions, and structural specifications.
+              Whether you require pipe racks, industrial shed framing, protective coatings, or facility ceiling work,
+              Kwality Interiors is available to review your drawings and discuss execution.
+            </p>
+          </Reveal>
 
-          <div className="mt-4 flex items-center gap-2 font-mono text-[11px] text-white/40">
-            <Layers className="h-3.5 w-3.5 text-amber-400" />
-            <span>
-              Illustrative project planning space · Mentally map Kwality Interiors verified execution scope to your project.
-            </span>
-          </div>
+          <Reveal level="l4">
+            <div className="mt-4 flex items-center gap-2 font-mono text-[11px] text-white/50">
+              <Layers className="h-3.5 w-3.5 text-amber-400" />
+              <span>
+                Interactive project planning · Review Kwality Interiors execution scope for your site.
+              </span>
+            </div>
+          </Reveal>
         </div>
 
         {/* Capability Selection Grid */}

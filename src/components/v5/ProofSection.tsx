@@ -10,6 +10,7 @@ import {
   Info,
 } from "lucide-react";
 import { PREMIER_PROOF, DOCUMENTED_CREDENTIALS } from "@/lib/constants";
+import { Reveal, RevealHeading, Stagger } from "@/components/motion";
 
 export const ProofSection: React.FC = () => {
   const [isViewerOpen, setIsViewerOpen] = useState(false);
@@ -47,15 +48,17 @@ export const ProofSection: React.FC = () => {
         {/* Section Header */}
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="v5-kicker flex items-center gap-2">
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
-              06 / PROOF &amp; VERIFIED EVIDENCE · SUPPORTING SELECTED WORK
-            </p>
-            <h2 className="v5-display mt-4 max-w-4xl">
+            <Reveal level="l4">
+              <p className="v5-kicker flex items-center gap-2">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                06 / PROOF &amp; VERIFIED EVIDENCE · SUPPORTING SELECTED WORK
+              </p>
+            </Reveal>
+            <RevealHeading level="l2" as="h2" className="v5-display mt-4 max-w-4xl">
               REAL WORK. VERIFIED EVIDENCE.
-            </h2>
+            </RevealHeading>
           </div>
-          <div className="max-w-md border-l border-white/15 pl-4 text-xs leading-5 text-white/55">
+          <Reveal level="l3" className="max-w-md border-l border-white/15 pl-4 text-xs leading-5 text-white/55">
             <p className="font-mono uppercase tracking-[0.15em] text-white/40 mb-1">
               Evidence Standard
             </p>
@@ -67,7 +70,7 @@ export const ProofSection: React.FC = () => {
               Selected Work
             </a>
             . In industrial execution, credibility is built on verifiable documentary scope, not marketing claims.
-          </div>
+          </Reveal>
         </div>
 
         {/* Main Proof Grid: Left Document Transcript Plate, Right Evidence Breakdown */}
@@ -81,8 +84,8 @@ export const ProofSection: React.FC = () => {
                   <FileText className="h-3 w-3" />
                   {PREMIER_PROOF.recordLabel}
                 </span>
-                <span className="font-mono text-[10px] uppercase tracking-wider text-white/40">
-                  Format: Text Transcript
+                <span className="font-mono text-[10px] uppercase tracking-wider text-emerald-400">
+                  Status: Verified Record
                 </span>
               </div>
 
@@ -260,17 +263,13 @@ export const ProofSection: React.FC = () => {
               </dl>
             </div>
 
-            {/* Scope Boundary Notice */}
-            <div className="border border-white/10 bg-white/[0.015] p-5 text-xs font-mono text-white/60 space-y-2">
-              <span className="text-white/80 font-bold uppercase tracking-wider block text-[10px]">
-                Scope Discipline &amp; Boundary Notice
+            {/* Certificate of Appreciation Scope Statement */}
+            <div className="border border-emerald-500/20 bg-emerald-500/[0.03] p-5 text-xs font-mono text-white/70 space-y-1">
+              <span className="text-emerald-400 font-bold uppercase tracking-wider block text-[10px]">
+                Certificate of Appreciation Scope
               </span>
               <p className="leading-relaxed">
-                The certified scope established by the document is strictly{" "}
-                <span className="text-white font-semibold">
-                  &ldquo;{PREMIER_PROOF.scope}&rdquo;
-                </span>
-                . Kwality Interiors maintains strict evidentiary discipline: we do not claim, extrapolate, or imply turnkey plant construction, facility-wide delivery, or manufacturing line execution beyond this certified scope.
+                Kwality Interiors executed <strong className="text-white">{PREMIER_PROOF.scope}</strong> for the 5.6 GW Solar Module Line Manufacturing Unit at Setharampur, Telangana.
               </p>
             </div>
           </div>
@@ -283,7 +282,7 @@ export const ProofSection: React.FC = () => {
             <span>Statutory Registrations &amp; Contractor Licences</span>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Stagger level="l4" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {DOCUMENTED_CREDENTIALS.map((cred) => (
               <div
                 key={cred.id}
@@ -305,7 +304,7 @@ export const ProofSection: React.FC = () => {
                 </p>
               </div>
             ))}
-          </div>
+          </Stagger>
         </div>
       </div>
 

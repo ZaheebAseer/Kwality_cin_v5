@@ -16,8 +16,12 @@ gsap.registerPlugin(ScrollTrigger);
 const TOTAL_FRAMES = 200;
 const FRAME_ASPECT_RATIO = 1920 / 1080;
 
-function getFrameUrl(index: number): string {
+function getFrameUrl(index: number, isMobileDevice: boolean = false): string {
   const padded = String(Math.max(1, Math.min(TOTAL_FRAMES, index))).padStart(3, "0");
+  if (isMobileDevice) {
+    // Serve Next.js optimized 750px frame on mobile devices to cap bandwidth from ~150KB down to ~35KB
+    return `/_next/image?url=${encodeURIComponent(`/frames/frame-${padded}.jpg`)}&w=750&q=75`;
+  }
   return `/frames/frame-${padded}.jpg`;
 }
 
@@ -165,7 +169,8 @@ export const FlagshipProjectSequence: React.FC = () => {
           resolve(null);
         };
 
-        img.src = getFrameUrl(index);
+        const isMobileDevice = typeof window !== "undefined" && (window.innerWidth < 768 || navigator.maxTouchPoints > 1);
+        img.src = getFrameUrl(index, isMobileDevice);
       });
 
       pendingRequestsRef.current.set(index, promise);
@@ -429,7 +434,7 @@ export const FlagshipProjectSequence: React.FC = () => {
                   alt="Kwality Interiors - Project sequence loading poster"
                   fill
                   priority
-                  sizes="100vw"
+                  sizes="(max-width: 768px) 100vw, 1280px"
                   className="object-cover opacity-60"
                 />
                 <div className="absolute inset-0 flex items-center justify-center">

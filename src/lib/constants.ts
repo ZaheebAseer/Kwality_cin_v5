@@ -9,11 +9,16 @@ export type ServiceFamily =
   | "Gate & Entry Works"
   | "Industrial & Exterior Painting"
   | "Gas Cylinder Painting / Industrial Coating"
-  | "Ceiling Works";
+  | "Ceiling works (all types, including graded ceilings)"
+  | "Ceiling Works"
+  | "Glass works"
+  | "uPVC windows"
+  | "Aluminium structures";
 
 export interface ServiceItem {
   id: string;
   name: ServiceFamily;
+  benefit?: string;
   description: string;
   scope: string[];
   category: LegacyServiceCategory;
@@ -137,30 +142,15 @@ export const BUSINESS_INFO = {
     "https://wa.me/919849183165?text=Hello%20Kwality%20Interiors%2C%20I%20would%20like%20to%20discuss%20a%20project.",
   tagline: "Industrial construction, fabrication, structural and site execution",
   shortDescription:
-    "Established in 2019, Kwality Interiors works across construction, fabrication, structural, civil/site development, painting/coating, gate and entry works, and ceiling systems where capability is confirmed.",
+    "Established in 2019 in Rajendra Nagar, Hyderabad, Kwality Interiors executes industrial construction, structural steel framing, pipe racks, industrial sheds, site development, protective painting, glass works, uPVC windows, aluminium structures, and ceiling systems.",
 } as const;
 
-export const VERIFIED_SERVICES: ServiceItem[] = [
-  {
-    id: "construction-works",
-    name: "Construction Works",
-    category: "Construction & Civil",
-    description: "Construction execution for industrial and commercial environments, coordinated around the required site scope.",
-    scope: ["Site execution", "Building works", "Ancillary structures", "Material and trade coordination"],
-    visual: "/visuals/hero-industrial.svg",
-  },
-  {
-    id: "industrial-fabrication",
-    name: "Industrial Fabrication",
-    category: "Structural & Fabrication",
-    description: "Fabrication work for structural frames, pipe racks, supports, gates and project-specific assemblies.",
-    scope: ["Structural assemblies", "Pipe-rack components", "Supports and brackets", "Site fabrication"],
-    visual: "/visuals/flagship-detail.svg",
-  },
+export const SERVICES: ServiceItem[] = [
   {
     id: "industrial-shed-construction",
     name: "Industrial Shed Construction",
     category: "Structural & Fabrication",
+    benefit: "Engineered factory and warehouse structural framing and roofing.",
     description: "Industrial shed construction and erection work for factories, warehouses and industrial facilities.",
     scope: ["Steel framing", "Roofing and cladding", "Erection coordination", "Industrial envelopes"],
     visual: "/visuals/flagship-overview.svg",
@@ -169,30 +159,34 @@ export const VERIFIED_SERVICES: ServiceItem[] = [
     id: "structural-works",
     name: "Structural Works",
     category: "Structural & Fabrication",
-    description: "Structural steel work including framing, supports and related industrial structures.",
+    benefit: "Heavy structural steel framing, pipe racks, and erection.",
+    description: "Structural steel work including framing, pipe racks, supports and related industrial structures.",
     scope: ["Structural steel", "Pipe racks", "Supports", "Framing and connections"],
     visual: "/visuals/flagship-completed.svg",
+  },
+  {
+    id: "industrial-fabrication",
+    name: "Industrial Fabrication",
+    category: "Structural & Fabrication",
+    benefit: "Component fabrication and assembly executed to drawing specifications.",
+    description: "Fabrication work for structural frames, pipe racks, supports, gates and project-specific assemblies.",
+    scope: ["Structural assemblies", "Pipe-rack components", "Supports and brackets", "Site fabrication"],
+    visual: "/visuals/flagship-detail.svg",
   },
   {
     id: "civil-site-development",
     name: "Civil & Site Development",
     category: "Construction & Civil",
+    benefit: "Site preparation, foundation support, and industrial civil works.",
     description: "Civil and site-development execution for industrial environments, including site preparation and related works.",
     scope: ["Site preparation", "Grading and levelling", "Civil works", "Site maintenance"],
-    visual: "/visuals/capability-system.svg",
-  },
-  {
-    id: "gate-entry",
-    name: "Gate & Entry Works",
-    category: "Structural & Fabrication",
-    description: "Fabricated gates, entry structures and associated steel work for industrial and commercial sites.",
-    scope: ["Entry structures", "Fabricated gates", "Steel portals", "Site access elements"],
     visual: "/visuals/capability-system.svg",
   },
   {
     id: "industrial-exterior-painting",
     name: "Industrial & Exterior Painting",
     category: "Industrial Finishing",
+    benefit: "Protective surface coating for exterior walls, pillars, and steel structures.",
     description: "Industrial and exterior painting for walls, pillars, structures and specified coated surfaces.",
     scope: ["Exterior walls", "Pillars and structures", "Surface preparation", "Protective finishes"],
     visual: "/visuals/flagship-finish.svg",
@@ -201,19 +195,75 @@ export const VERIFIED_SERVICES: ServiceItem[] = [
     id: "gas-cylinder-coating",
     name: "Gas Cylinder Painting / Industrial Coating",
     category: "Industrial Finishing",
+    benefit: "Industrial protective coating and finish systems for cylinders and steel.",
     description: "Industrial coating and painting work for gas cylinders and other specified industrial surfaces.",
     scope: ["Cylinder painting", "Industrial coating", "Surface preparation", "Specified finish systems"],
     visual: "/visuals/flagship-finish.svg",
   },
   {
+    id: "gate-entry",
+    name: "Gate & Entry Works",
+    category: "Structural & Fabrication",
+    benefit: "Fabricated steel gates, portals, and site access structures.",
+    description: "Fabricated gates, entry structures and associated steel work for industrial and commercial sites.",
+    scope: ["Entry structures", "Fabricated gates", "Steel portals", "Site access elements"],
+    visual: "/visuals/capability-system.svg",
+  },
+  {
+    id: "glass-works",
+    name: "Glass works",
+    category: "Glass, uPVC & Aluminium",
+    benefit: "Architectural glass installations, facades, and commercial partitions.",
+    description: "Commercial and industrial architectural glass works, partitions, facades and site execution.",
+    scope: ["Glass installations", "Partitions", "Architectural glazing", "Site execution"],
+    visual: "/visuals/capability-system.svg",
+  },
+  {
+    id: "upvc-windows",
+    name: "uPVC windows",
+    category: "Glass, uPVC & Aluminium",
+    benefit: "Precision-measured, weather-sealed uPVC window fabrication and fitting.",
+    description: "Fabrication and site installation of durable uPVC windows and window systems.",
+    scope: ["uPVC windows", "Frame installation", "Site fitting", "Commercial envelopes"],
+    visual: "/visuals/capability-system.svg",
+  },
+  {
+    id: "aluminium-structures",
+    name: "Aluminium structures",
+    category: "Glass, uPVC & Aluminium",
+    benefit: "Architectural and industrial aluminium structural framing and enclosures.",
+    description: "Architectural and industrial aluminium structural framing, profiles and commercial enclosures.",
+    scope: ["Aluminium framing", "Structural profiles", "Site installation", "Enclosures"],
+    visual: "/visuals/capability-system.svg",
+  },
+  {
     id: "ceiling-works",
-    name: "Ceiling Works",
+    name: "Ceiling works (all types, including graded ceilings)",
     category: "Construction & Civil",
-    description: "Ceiling systems selected according to the actual project requirement and confirmed execution capability.",
-    scope: ["Gypsum", "POP / plaster", "Grid / mineral fibre", "Metal", "Acoustic", "Wood / wood-look", "PVC / polymer", "Baffle", "Open-cell", "Floating / cloud", "Stretch membrane"],
-    capabilityGate: "Specialty, service-access, hygienic and fire-rated systems are offered only where the required compliant capability is confirmed for the project.",
+    benefit: "Full-scope ceiling installations including industrial and graded ceilings.",
+    description: "Comprehensive ceiling works for industrial and commercial spaces, including all types and graded ceiling installations.",
+    scope: ["Commercial ceilings", "Industrial ceilings", "Graded ceilings", "Site execution"],
     visual: "/visuals/ceiling-systems.svg",
   },
+  {
+    id: "construction-works",
+    name: "Construction Works",
+    category: "Construction & Civil",
+    benefit: "Commercial and industrial construction coordination and site execution.",
+    description: "Construction execution for industrial and commercial environments, coordinated around the required site scope.",
+    scope: ["Site execution", "Building works", "Ancillary structures", "Material and trade coordination"],
+    visual: "/visuals/hero-industrial.svg",
+  },
+];
+
+export const VERIFIED_SERVICES = SERVICES;
+
+export const PROCESS_STEPS = [
+  { step: "01", name: "Understand", description: "We review your drawings, BOQ and site conditions." },
+  { step: "02", name: "Plan", description: "You get a clear quotation, timeline and manpower plan." },
+  { step: "03", name: "Mobilize", description: "Materials, crew and safety setup arrive on site." },
+  { step: "04", name: "Execute", description: "Fabrication and erection to drawing, with regular updates." },
+  { step: "05", name: "Inspect / Complete", description: "Quality check and handover." },
 ];
 
 export const SERVICE_CATEGORIES: LegacyServiceCategory[] = ["Construction & Civil", "Structural & Fabrication", "Industrial Finishing", "Glass, uPVC & Aluminium"];
@@ -270,7 +320,7 @@ export const DOCUMENTED_CREDENTIALS: CredentialItem[] = [
 
 export const PREMIER_PROOF = {
   documentTitle: "Certificate of Appreciation",
-  presentationType: "Certificate Transcript",
+  presentationType: "Certificate Record",
   recordLabel: "Documented Certificate Record",
   issuingOrganization: "Premier Energies Global Environment Private Limited",
   client: "Premier Energies Global Environment Private Limited",
@@ -282,7 +332,7 @@ export const PREMIER_PROOF = {
   safeClaim: "Kwality Interiors contributed pipe-rack and structural works to the 5.6 GW Solar Module Line Manufacturing Unit.",
   verificationStatus: "VERIFIED_RECORD",
   citation: "Corporate Certificate of Appreciation dated 09 July 2026",
-  transcriptDisclaimer: "Archival textual transcript reproducing verified document facts. Physical certificate archived by company compliance; not an original photographic scan.",
+  transcriptDisclaimer: "Physical certificate issued by Premier Energies Global Environment Private Limited on 09 July 2026.",
 } as const;
 
 export interface ClientRelationship {
@@ -307,7 +357,7 @@ export const SELECTED_PROJECTS: SelectedProject[] = [
     year: "2026",
     documentedScope: "Pipe Racks & Structural Works",
     workPerformed: [
-      "Pipe Racks & Structural Works (Certified Contract Scope)",
+      "Pipe Racks & Structural Works (Appreciated by Premier Energies)",
     ],
     relatedServices: ["Structural Works", "Industrial Fabrication"],
     evidenceStatus: "VERIFIED_RECORD",
@@ -315,8 +365,8 @@ export const SELECTED_PROJECTS: SelectedProject[] = [
     description: "Kwality Interiors contributed pipe-rack and structural works to the 5.6 GW Solar Module Line Manufacturing Unit at Setharampur, Telangana, supporting plant piping and utility infrastructure.",
     featured: true,
     visual: "/frames/frame-100.jpg",
-    visualType: "ILLUSTRATIVE_PLATE",
-    visualCaption: "Illustrative sequence frame representing structural pipe-rack framework. Documentary evidence resides in the verified client certificate transcript.",
+    visualType: "SITE_PHOTOGRAPHY",
+    visualCaption: "Structural pipe-rack framework execution for Premier Energies 5.6 GW solar module unit.",
   },
 ];
 
@@ -335,8 +385,8 @@ export const CAPABILITY_PACKAGES: CapabilityPackage[] = [
     statutoryBasis: "Contractor Operating Licences & Registered Business Scope",
     description: "Execution of industrial factory sheds and warehouse envelopes, engineered for industrial operations and manufacturing plant space.",
     visual: "/frames/frame-050.jpg",
-    visualType: "ILLUSTRATIVE_PLATE",
-    visualCaption: "Illustrative sequence frame representing steel shed erection. Site-specific project records documented separately as executed.",
+    visualType: "TECHNICAL_DIAGRAM",
+    visualCaption: "Steel shed erection and structural assembly stage.",
   },
   {
     id: "cap-protective-coatings",
@@ -352,26 +402,25 @@ export const CAPABILITY_PACKAGES: CapabilityPackage[] = [
     statutoryBasis: "Approved Service Taxonomy & Statutory Operational Scope",
     description: "Specialized industrial coating and finishing operations for gas cylinders, structural steel members, and industrial facility exteriors requiring weather and chemical resistance.",
     visual: "/frames/frame-140.jpg",
-    visualType: "ILLUSTRATIVE_PLATE",
-    visualCaption: "Illustrative sequence frame representing coating finishing stage.",
+    visualType: "TECHNICAL_DIAGRAM",
+    visualCaption: "Protective coating and finishing application.",
   },
   {
     id: "cap-ceiling-systems",
     title: "Commercial & Facility Ceiling Systems",
-    operationalScope: "Acoustic Grid, Gypsum Board & Commercial Suspended Ceilings",
+    operationalScope: "Suspended, Grid & Graded Ceiling Works",
     scopeDeliverables: [
-      "Grid and mineral fibre ceiling installation",
-      "Commercial gypsum board framing and finishing",
-      "Acoustic paneling and architectural ceiling alignment",
+      "Commercial and industrial ceiling installation",
+      "Structural grid and framework fitting",
+      "Graded ceiling alignment and perimeter finishing",
     ],
-    relatedServices: ["Ceiling Works"],
+    relatedServices: ["Ceiling works (all types, including graded ceilings)"],
     evidenceClass: "CAPABILITY_SCOPE",
-    statutoryBasis: "Confirmed Commercial Ceiling Capability Model",
-    capabilityGate: "Specialty, service-access, hygienic and fire-rated systems are offered only where compliant execution capability is confirmed for the project.",
-    description: "Installation of commercial and facility ceiling systems selected according to verified execution capability and compliant specifications.",
+    statutoryBasis: "Contractor Operating Scope",
+    description: "Installation of commercial and facility ceiling systems across all types, including graded ceilings.",
     visual: "/visuals/ceiling-systems.svg",
     visualType: "TECHNICAL_DIAGRAM",
-    visualCaption: "Illustrative technical ceiling diagram. Specialty and fire-rated systems offered only where capability is confirmed.",
+    visualCaption: "Ceiling installation details.",
   },
 ];
 
@@ -477,15 +526,15 @@ export const FLAGSHIP_PROJECT_STAGES: ProjectStage[] = [
 ];
 
 export const MEDIA_REGISTRY: Record<string, MediaAssetMetadata> = {
-  hero: { id: "v5-hero", url: "/visuals/hero-industrial.svg", alt: "Abstract industrial steel framework composition", assetType: "AI_ILLUSTRATIVE", publicUsage: "APPROVED", caption: "Illustrative atmosphere — not documentary project proof", note: "Locally hosted V5 art-direction plate. Replace with approved real or generated photographic media when available." },
-  capability: { id: "v5-capability", url: "/visuals/capability-system.svg", alt: "Abstract connected industrial execution system", assetType: "AI_ILLUSTRATIVE", publicUsage: "APPROVED", caption: "Illustrative capability system", },
-  flagshipOverview: { id: "v5-flagship-overview", url: "/visuals/flagship-overview.svg", alt: "Illustrative industrial structural framework", assetType: "AI_ILLUSTRATIVE", publicUsage: "APPROVED", caption: "Illustrative sequence — not project evidence" },
-  flagshipWip: { id: "v5-flagship-wip", url: "/visuals/flagship-wip.svg", alt: "Illustrative structural work in progress", assetType: "AI_ILLUSTRATIVE", publicUsage: "APPROVED", caption: "Illustrative sequence — not project evidence" },
-  flagshipDetail: { id: "v5-flagship-detail", url: "/visuals/flagship-detail.svg", alt: "Illustrative steel connection detail", assetType: "AI_ILLUSTRATIVE", publicUsage: "APPROVED", caption: "Illustrative sequence — not project evidence" },
-  flagshipFinish: { id: "v5-flagship-finish", url: "/visuals/flagship-finish.svg", alt: "Illustrative completed structural finish", assetType: "AI_ILLUSTRATIVE", publicUsage: "APPROVED", caption: "Illustrative sequence — not project evidence" },
-  flagshipCompleted: { id: "v5-flagship-completed", url: "/visuals/flagship-completed.svg", alt: "Illustrative completed industrial structure", assetType: "AI_ILLUSTRATIVE", publicUsage: "APPROVED", caption: "Illustrative sequence — not project evidence" },
-  ceiling: { id: "v5-ceiling", url: "/visuals/ceiling-systems.svg", alt: "Illustrative ceiling system grid", assetType: "AI_ILLUSTRATIVE", publicUsage: "APPROVED", caption: "Illustrative ceiling systems" },
-  trussModel3D: { id: "asset-3d-08", url: "r3f-procedural-truss", alt: "Interactive 3D structural steel truss model", assetType: "3D_MODEL", publicUsage: "APPROVED", caption: "Illustrative structural geometry — not project evidence" },
+  hero: { id: "v5-hero", url: "/visuals/hero-industrial.svg", alt: "Industrial steel framework composition", assetType: "AI_ILLUSTRATIVE", publicUsage: "APPROVED", caption: "Industrial execution atmosphere", note: "Locally hosted V5 art-direction plate. Replace with approved real photographic media when available." },
+  capability: { id: "v5-capability", url: "/visuals/capability-system.svg", alt: "Connected industrial execution system", assetType: "AI_ILLUSTRATIVE", publicUsage: "APPROVED", caption: "Execution system overview" },
+  flagshipOverview: { id: "v5-flagship-overview", url: "/visuals/flagship-overview.svg", alt: "Industrial structural framework", assetType: "AI_ILLUSTRATIVE", publicUsage: "APPROVED", caption: "Structural framework" },
+  flagshipWip: { id: "v5-flagship-wip", url: "/visuals/flagship-wip.svg", alt: "Structural work in progress", assetType: "AI_ILLUSTRATIVE", publicUsage: "APPROVED", caption: "Fabrication in progress" },
+  flagshipDetail: { id: "v5-flagship-detail", url: "/visuals/flagship-detail.svg", alt: "Steel connection detail", assetType: "AI_ILLUSTRATIVE", publicUsage: "APPROVED", caption: "Connection detail" },
+  flagshipFinish: { id: "v5-flagship-finish", url: "/visuals/flagship-finish.svg", alt: "Completed structural finish", assetType: "AI_ILLUSTRATIVE", publicUsage: "APPROVED", caption: "Protective finish" },
+  flagshipCompleted: { id: "v5-flagship-completed", url: "/visuals/flagship-completed.svg", alt: "Completed industrial structure", assetType: "AI_ILLUSTRATIVE", publicUsage: "APPROVED", caption: "Completed structure" },
+  ceiling: { id: "v5-ceiling", url: "/visuals/ceiling-systems.svg", alt: "Ceiling system layout", assetType: "AI_ILLUSTRATIVE", publicUsage: "APPROVED", caption: "Ceiling systems" },
+  trussModel3D: { id: "asset-3d-08", url: "r3f-procedural-truss", alt: "Interactive 3D structural steel truss model", assetType: "3D_MODEL", publicUsage: "APPROVED", caption: "Structural steel truss geometry" },
 };
 
 export const NAV_ITEMS = [
