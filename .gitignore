@@ -1,0 +1,25 @@
+# Node & Next.js
+node_modules/
+.next/
+out/
+build/
+dist/
+
+# Logs & Diagnostics
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Environment & Secrets
+.env
+.env*.local
+*.pem
+
+# IDE & OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.playwright-mcp/
+*.tsbuildinfo
