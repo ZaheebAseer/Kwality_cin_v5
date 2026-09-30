@@ -13,16 +13,15 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-const TOTAL_FRAMES = 200;
+const TOTAL_FRAMES = 100;
 const FRAME_ASPECT_RATIO = 1920 / 1080;
 
 function getFrameUrl(index: number, isMobileDevice: boolean = false): string {
   const padded = String(Math.max(1, Math.min(TOTAL_FRAMES, index))).padStart(3, "0");
   if (isMobileDevice) {
-    // Serve Next.js optimized 750px frame on mobile devices to cap bandwidth from ~150KB down to ~35KB
-    return `/_next/image?url=${encodeURIComponent(`/frames/frame-${padded}.jpg`)}&w=750&q=75`;
+    return `/frames/mobile/frame-${padded}.webp`;
   }
-  return `/frames/frame-${padded}.jpg`;
+  return `/frames/desktop/frame-${padded}.webp`;
 }
 
 function getStageForProgress(progress: number): SequenceStage {
@@ -277,6 +276,30 @@ export const FlagshipProjectSequence: React.FC = () => {
     [drawFrame, prefetchNearby]
   );
 
+  // Progressive load triggers only when viewport is near section
+  const [isNearSection, setIsNearSection] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || typeof IntersectionObserver === "undefined") {
+      setIsNearSection(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setIsNearSection(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "400px 0px" }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   // Initialize checks: reduced motion, mobile, and initial poster frame
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -288,11 +311,11 @@ export const FlagshipProjectSequence: React.FC = () => {
     checkMobile();
     window.addEventListener("resize", checkMobile);
 
-    if (reduce) {
+    if (reduce || !isNearSection) {
       return () => window.removeEventListener("resize", checkMobile);
     }
 
-    // Load poster frame (frame-001) immediately
+    // Load initial poster frame (frame-001) progressively once near section
     loadFrame(1).then((img) => {
       if (img) {
         setIsLoadedFirst(true);
@@ -316,9 +339,9 @@ export const FlagshipProjectSequence: React.FC = () => {
       window.removeEventListener("resize", handleResize);
       if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
     };
-  }, [loadFrame, drawFrame]);
+  }, [loadFrame, drawFrame, isNearSection]);
 
-  // GSAP ScrollTrigger setup for scroll-linked sequence scrubbing
+  // GSAP ScrollTrigger setup for scroll-linked sequence scrubbing (or mobile step reveal)
   useEffect(() => {
     if (reducedMotion) return;
 
@@ -330,23 +353,29 @@ export const FlagshipProjectSequence: React.FC = () => {
         trigger: section,
         start: "top top",
         end: "bottom bottom",
-        scrub: 0.15,
+        scrub: isMobile ? 0.3 : 0.15,
         onUpdate: (self) => {
           const progress = self.progress;
           setScrollProgress(progress);
-
-          // Map normalized progress 0→1 to frame 1→200
-          const frame = Math.min(
-            TOTAL_FRAMES,
-            Math.max(1, Math.round(progress * (TOTAL_FRAMES - 1)) + 1)
-          );
 
           // Update stage metadata
           const stage = getStageForProgress(progress);
           setActiveStage(stage);
 
+          // Mobile: lighter step-based reveal on key landmark checkpoints (1, 25, 50, 75, 100)
+          // Desktop: full responsive 100-frame scrubbing
+          let targetFrame: number;
+          if (isMobile) {
+            targetFrame = stage.checkpointFrame || 1;
+          } else {
+            targetFrame = Math.min(
+              TOTAL_FRAMES,
+              Math.max(1, Math.round(progress * (TOTAL_FRAMES - 1)) + 1)
+            );
+          }
+
           // Render scheduled frame
-          scheduleFrameRender(frame);
+          scheduleFrameRender(targetFrame);
         },
       });
     }, section);
@@ -357,7 +386,7 @@ export const FlagshipProjectSequence: React.FC = () => {
         if (t.trigger === section) t.kill();
       });
     };
-  }, [reducedMotion, scheduleFrameRender]);
+  }, [reducedMotion, isMobile, scheduleFrameRender]);
 
   // Precomputed stage transitions for editorial choreography
   const stageTransitions = useMemo(() => {
@@ -430,7 +459,7 @@ export const FlagshipProjectSequence: React.FC = () => {
             {!isLoadedFirst && (
               <div className="absolute inset-0 bg-[#05070a]">
                 <Image
-                  src="/frames/frame-001.jpg"
+                  src="/frames/poster.webp"
                   alt="Kwality Interiors - Project sequence loading poster"
                   fill
                   priority

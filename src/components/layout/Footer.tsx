@@ -113,7 +113,15 @@ export const Footer: React.FC = () => {
           <div>
             &copy; {new Date().getFullYear()} {BUSINESS_INFO.name}. All rights reserved.
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+            <a
+              href="/downloads/kwality-company-profile.pdf"
+              download="kwality-company-profile.pdf"
+              className="text-amber-industrial hover:underline transition-colors"
+            >
+              Company Profile (PDF)
+            </a>
+            <span className="text-steel-700">•</span>
             <Link href="/#contact" className="hover:text-steel-300 transition-colors">
               Contact & Enquiries
             </Link>

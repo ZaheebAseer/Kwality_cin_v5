@@ -8,12 +8,15 @@ import { MobileActionDock } from "@/components/layout/MobileActionDock";
 import { Footer } from "@/components/layout/Footer";
 import { StructuralViewer } from "@/components/canvas/StructuralViewer";
 import { CapabilityReveal } from "@/components/v5/CapabilityReveal";
+import { IndustriesSection } from "@/components/v5/IndustriesSection";
+import { CaseStudiesSection } from "@/components/v5/CaseStudiesSection";
 import { FlagshipProjectSequence } from "@/components/v5/FlagshipProjectSequence";
-import { SelectedWorkSection } from "@/components/v5/SelectedWorkSection";
+import { RealWorkGallerySection } from "@/components/v5/RealWorkGallerySection";
 import { ProofSection } from "@/components/v5/ProofSection";
 import { ProcessSection } from "@/components/v5/ProcessSection";
 import { PeopleSection } from "@/components/v5/PeopleSection";
-import { ImagineProjectSection } from "@/components/v5/ImagineProjectSection";
+import { ProcurementEnquirySection } from "@/components/v5/ProcurementEnquirySection";
+import { FaqSection } from "@/components/v5/FaqSection";
 import { ContactSection } from "@/components/v5/ContactSection";
 import { NumbersStrip } from "@/components/v5/NumbersStrip";
 import { Reveal, RevealHeading, Stagger } from "@/components/motion";
@@ -177,12 +180,15 @@ export const CinematicLanding: React.FC = () => {
           </div>
         </section>
 
+        <IndustriesSection />
+        <CaseStudiesSection />
         <FlagshipProjectSequence />
-        <SelectedWorkSection />
+        <RealWorkGallerySection />
         <ProofSection />
         <ProcessSection />
         <PeopleSection />
-        <ImagineProjectSection />
+        <ProcurementEnquirySection />
+        <FaqSection />
         <ContactSection />
 
         <section className="border-b border-white/10 bg-[#080b10]">

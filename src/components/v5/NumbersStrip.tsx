@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { PREMIER_PROOF } from "@/lib/constants";
 import { CountUp, Stagger } from "@/components/motion";
 
 export const NumbersStrip: React.FC = () => {

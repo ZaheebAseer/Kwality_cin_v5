@@ -57,6 +57,39 @@ export const PeopleSection: React.FC = () => {
                 <span className="font-semibold text-white mt-0.5 block">Direct Site Supervision</span>
               </div>
             </Stagger>
+
+            {/* Optional Site-Crew & Workshop Slots (Dev preview or production photo if present) */}
+            <div className="mt-10 border-t border-white/10 pt-8">
+              <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-white/50 mb-4">
+                Execution Workforce &amp; Fabrication Facilities
+              </h4>
+              <div className="grid gap-6 sm:grid-cols-2">
+                <div>
+                  <PhotoSlot
+                    src="/images/people/site-crew.webp"
+                    alt="Kwality Interiors direct site execution crew"
+                    slotLabel="Site Crew Photo Slot"
+                    recommendedSize="800x600 px, WebP < 100KB"
+                    aspectRatio="aspect-[16/10]"
+                  />
+                  <p className="mt-2 text-xs text-white/60">
+                    <strong className="text-white">Direct Site Crew:</strong> Skilled fitters, riggers, and welders managed directly on active job sites.
+                  </p>
+                </div>
+                <div>
+                  <PhotoSlot
+                    src="/images/people/workshop-crew.webp"
+                    alt="Kwality Interiors fabrication workshop crew"
+                    slotLabel="Workshop Facility Photo Slot"
+                    recommendedSize="800x600 px, WebP < 100KB"
+                    aspectRatio="aspect-[16/10]"
+                  />
+                  <p className="mt-2 text-xs text-white/60">
+                    <strong className="text-white">Fabrication Workshop:</strong> Cutting, welding, and structural prep prior to site delivery.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

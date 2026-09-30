@@ -9,7 +9,7 @@ import {
   ArrowUpRight,
   Info,
 } from "lucide-react";
-import { PREMIER_PROOF, DOCUMENTED_CREDENTIALS } from "@/lib/constants";
+import { PREMIER_PROOF, BUSINESS_INFO } from "@/lib/constants";
 import { Reveal, RevealHeading, Stagger } from "@/components/motion";
 
 export const ProofSection: React.FC = () => {
@@ -275,35 +275,126 @@ export const ProofSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Supporting Statutory Registrations Strip */}
-        <div className="mt-16 pt-12 border-t border-white/10">
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-white/40 mb-6">
-            <ShieldCheck className="h-4 w-4 text-emerald-400" />
-            <span>Statutory Registrations &amp; Contractor Licences</span>
+        {/* M12 Documented Trust Wall: 5 Verified Cards */}
+        <div id="documented-credentials" className="mt-16 pt-12 border-t border-white/10">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-white/50">
+              <ShieldCheck className="h-4 w-4 text-emerald-400" />
+              <span>Documented / Trust Wall · Statutory Registrations &amp; Certificate</span>
+            </div>
+
+            {/* M20: Download Company Profile PDF */}
+            <a
+              href="/downloads/kwality-company-profile.pdf"
+              download="kwality-company-profile.pdf"
+              className="inline-flex items-center gap-2 border border-amber-400/40 bg-amber-400/10 hover:bg-amber-400 hover:text-black text-amber-300 px-4 py-2 text-xs font-mono uppercase tracking-wider transition-colors self-start sm:self-auto"
+            >
+              <FileText className="h-3.5 w-3.5" />
+              <span>Download Company Profile (PDF)</span>
+            </a>
           </div>
 
-          <Stagger level="l4" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {DOCUMENTED_CREDENTIALS.map((cred) => (
-              <div
-                key={cred.id}
-                className="border border-white/10 bg-[#090c12] p-5 flex flex-col justify-between"
-              >
-                <div>
-                  <span className="font-mono text-[9px] uppercase tracking-wider text-amber-400 block mb-1">
-                    {cred.type}
-                  </span>
-                  <h5 className="text-sm font-semibold text-white">
-                    {cred.title}
-                  </h5>
-                  <p className="mt-1 text-xs text-white/40">
-                    {cred.issuingBody}
-                  </p>
+          {/* Redaction Notice */}
+          <div className="mb-6 rounded border border-white/10 bg-white/[0.02] px-4 py-3 text-xs text-white/60 flex items-start gap-2.5">
+            <Info className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
+            <p>
+              <strong className="text-white/80">Document Redaction Standard:</strong> In compliance
+              with privacy requirements, official document scans must have personal identifiers
+              (e.g., Aadhaar, private contact numbers, personal banking credentials) blurred/redacted
+              prior to uploading.
+            </p>
+          </div>
+
+          <Stagger level="l4" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {/* Card 1: GST */}
+            <div className="border border-white/10 bg-[#090c12] p-5 flex flex-col justify-between">
+              <div>
+                <span className="font-mono text-[9px] uppercase tracking-wider text-amber-400 block mb-1">
+                  Statutory Tax Registration
+                </span>
+                <h5 className="text-sm font-semibold text-white">GST Registration</h5>
+                <p className="mt-1 text-xs text-white/50">Govt. of India &amp; Telangana</p>
+                <div className="mt-3 font-mono text-[11px] text-emerald-400 bg-white/5 p-2 rounded">
+                  GSTIN: {BUSINESS_INFO.gstin}
                 </div>
-                <p className="mt-4 pt-3 border-t border-white/5 font-mono text-[10px] text-white/50">
-                  {cred.note}
-                </p>
               </div>
-            ))}
+              <div className="mt-4 pt-3 border-t border-white/5 text-[10px] font-mono text-white/50">
+                Scan Slot: /images/documents/gst.webp
+              </div>
+            </div>
+
+            {/* Card 2: Udyam */}
+            <div className="border border-white/10 bg-[#090c12] p-5 flex flex-col justify-between">
+              <div>
+                <span className="font-mono text-[9px] uppercase tracking-wider text-amber-400 block mb-1">
+                  Enterprise Registration
+                </span>
+                <h5 className="text-sm font-semibold text-white">Udyam Registration</h5>
+                <p className="mt-1 text-xs text-white/50">Ministry of MSME, Govt. of India</p>
+                <div className="mt-3 font-mono text-[11px] text-white/70 bg-white/5 p-2 rounded">
+                  Class: Small / Industrial Contractor
+                </div>
+              </div>
+              <div className="mt-4 pt-3 border-t border-white/5 text-[10px] font-mono text-white/50">
+                Scan Slot: /images/documents/udyam.webp
+              </div>
+            </div>
+
+            {/* Card 3: Labour Licence */}
+            <div className="border border-white/10 bg-[#090c12] p-5 flex flex-col justify-between">
+              <div>
+                <span className="font-mono text-[9px] uppercase tracking-wider text-amber-400 block mb-1">
+                  Labour &amp; Welfare Compliance
+                </span>
+                <h5 className="text-sm font-semibold text-white">Labour Licence</h5>
+                <p className="mt-1 text-xs text-white/50">Labour Dept., Govt. of Telangana</p>
+                <div className="mt-3 font-mono text-[11px] text-white/70 bg-white/5 p-2 rounded">
+                  Active Site Workforce Licence
+                </div>
+              </div>
+              <div className="mt-4 pt-3 border-t border-white/5 text-[10px] font-mono text-white/50">
+                Scan Slot: /images/documents/labour-licence.webp
+              </div>
+            </div>
+
+            {/* Card 4: Construction Licence */}
+            <div className="border border-white/10 bg-[#090c12] p-5 flex flex-col justify-between">
+              <div>
+                <span className="font-mono text-[9px] uppercase tracking-wider text-amber-400 block mb-1">
+                  Contractor Operating Authority
+                </span>
+                <h5 className="text-sm font-semibold text-white">Construction Licence</h5>
+                <p className="mt-1 text-xs text-white/50">Competent Statutory Authority</p>
+                <div className="mt-3 font-mono text-[11px] text-white/70 bg-white/5 p-2 rounded">
+                  Civil &amp; Structural Execution
+                </div>
+              </div>
+              <div className="mt-4 pt-3 border-t border-white/5 text-[10px] font-mono text-white/50">
+                Scan Slot: /images/documents/construction-licence.webp
+              </div>
+            </div>
+
+            {/* Card 5: Premier Energies Certificate */}
+            <div className="border border-amber-500/30 bg-amber-500/5 p-5 flex flex-col justify-between">
+              <div>
+                <span className="font-mono text-[9px] uppercase tracking-wider text-amber-300 block mb-1">
+                  Client Milestone Certificate
+                </span>
+                <h5 className="text-sm font-semibold text-white">Premier Energies Certificate</h5>
+                <p className="mt-1 text-xs text-amber-200/70">Issued 09 July 2026</p>
+                <div className="mt-3 font-mono text-[11px] text-amber-300 bg-amber-400/10 p-2 rounded">
+                  5.6 GW Solar Unit Scope
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsViewerOpen(true)}
+                className="mt-4 pt-3 border-t border-amber-500/20 text-[11px] font-mono text-amber-400 hover:text-amber-300 inline-flex items-center gap-1.5 transition text-left"
+              >
+                <span>View Full Transcript</span>
+                <ArrowUpRight className="h-3 w-3" />
+              </button>
+            </div>
           </Stagger>
         </div>
       </div>
