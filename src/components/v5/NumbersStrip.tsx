@@ -28,16 +28,16 @@ export const NumbersStrip: React.FC = () => {
             </p>
           </div>
 
-          {/* Verified Metric 2: Documented Solar Unit Milestone */}
+          {/* Client Plant Scope: Explicitly Premier Energies plant scope (not a company stat) */}
           <div className="border-l border-amber-500/40 pl-4 py-1">
             <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/45 block mb-1">
-              Appreciated Unit Scope
+              Premier Energies plant scope
             </span>
             <div className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              <CountUp value={5.6} decimals={1} suffix=" GW" duration={1.5} />
+              5.6 GW
             </div>
             <p className="text-xs text-white/60 mt-1">
-              {PREMIER_PROOF.client} Facility
+              Solar module facility (pipe racks & structural execution)
             </p>
           </div>
 
