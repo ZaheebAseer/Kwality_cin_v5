@@ -119,6 +119,10 @@ export interface MediaAssetMetadata {
   note?: string;
 }
 
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
+  "https://kwalitycinv5-zaheeb2.vercel.app";
+
 export const BUSINESS_INFO = {
   name: "Kwality Interiors",
   owner: "Abdul Aleem",

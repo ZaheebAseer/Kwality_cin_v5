@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { BUSINESS_INFO } from "@/lib/constants";
+import { BUSINESS_INFO, SITE_URL } from "@/lib/constants";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,7 +29,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kwalityinteriors.in"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: `${BUSINESS_INFO.name} — Industrial Construction & Fabrication`,
     template: `%s | ${BUSINESS_INFO.name}`,
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://kwalityinteriors.in",
+    url: SITE_URL,
     siteName: BUSINESS_INFO.name,
     title: `${BUSINESS_INFO.name} — Industrial Construction & Fabrication`,
     description:

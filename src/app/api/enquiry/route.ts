@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { SITE_URL } from "@/lib/constants";
 
 // Simple in-memory rate limiting map: IP -> array of timestamps
 const rateLimitMap = new Map<string, number[]>();
@@ -124,7 +125,7 @@ export async function POST(req: NextRequest) {
             <p style="margin-top: 8px; white-space: pre-wrap;">${requirement}</p>
           </div>
           <p style="margin-top: 24px; font-size: 11px; color: #64748b;">
-            Submitted from kwalityinteriors.in enquiry form · IP: ${ip} · Timestamp: ${new Date().toISOString()}
+            Submitted from ${SITE_URL} enquiry form · IP: ${ip} · Timestamp: ${new Date().toISOString()}
           </p>
         </div>
       `,
